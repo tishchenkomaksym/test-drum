@@ -46,6 +46,3 @@
 #------------- минута (0—59)
 
 #* * * * * /usr/local/bin/php /var/www/html/artisan schedule:run >> /var/www/html/example.txt
-* * * * * echo "Hello2" >> /var/www/html/mylog.log
-# Command for dump db on server
-#docker exec 14d8051efc7d /usr/bin/mysqldump --no-tablespaces -u phpmyadmin --password=8IUikmw4Ac2O4nck crypto_bot > /var/www/bot/backup.sql
