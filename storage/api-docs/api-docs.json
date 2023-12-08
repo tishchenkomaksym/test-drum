@@ -1,0 +1,642 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Testdrum",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Login user",
+                "description": "Login user",
+                "operationId": "5f90fad45b3bec06f69a5d179ce78a5f",
+                "requestBody": {
+                    "description": "Pass params",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "auth": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer"
+                                                    },
+                                                    "authorization": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "token": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "example": "Bearer"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Register user",
+                "description": "Register user",
+                "operationId": "1716c95d7ee32950f11034c5cd88c6aa",
+                "requestBody": {
+                    "description": "Pass params",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "auth": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "integer"
+                                                    },
+                                                    "authorization": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "token": {
+                                                                    "type": "string"
+                                                                },
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "example": "Bearer"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tasks": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "tasks",
+                "description": "Getting tasks",
+                "operationId": "be68905d866e856db6c738172b8d929a",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tasks": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "priority": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "copmleted_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "depth": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/task/sort": {
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Sort task",
+                "description": "Sort tasks",
+                "operationId": "0f4995ea5bfbe2b0549f2af96a684840",
+                "requestBody": {
+                    "description": "Pass params",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "priority": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "copmleted_at": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "created_at": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "sortByCreatedAt": {
+                                        "type": "string"
+                                    },
+                                    "sortByCompletedAt": {
+                                        "type": "string"
+                                    },
+                                    "sortByPriority": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tasks": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "priority": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "copmleted_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "depth": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "You are not authorized to access this page."
+                    }
+                }
+            }
+        },
+        "/api/task/{id}": {
+            "get": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "task",
+                "description": "Get task",
+                "operationId": "90e79f793edef133aab13874da282d0f",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tasks": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "priority": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "copmleted_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "depth": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Delete task",
+                "description": "Delete task",
+                "operationId": "5a7556048c897ff610dc0b9c0ac19488",
+                "parameters": [
+                    {
+                        "name": "TaskId",
+                        "in": "path",
+                        "description": "TaskId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1, 2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/task": {
+            "put": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Update task",
+                "description": "Update task",
+                "operationId": "db8432f5675244658667c51595ff3285",
+                "requestBody": {
+                    "description": "Pass params",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "priority": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "task_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tasks": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "priority": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "copmleted_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "depth": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "This task already done"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Sort task",
+                "description": "Sort tasks",
+                "operationId": "0ff66d3da3b3930ea4e952682522438c",
+                "requestBody": {
+                    "description": "Pass params",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "priority": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "task_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tasks": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "priority": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "copmleted_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "depth": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/task/{id}/complete": {
+            "post": {
+                "tags": [
+                    "Task"
+                ],
+                "summary": "Complete task",
+                "description": "Complete task",
+                "operationId": "af2bf9d492e1eb701e26a9cb35b19c46",
+                "requestBody": {
+                    "description": "Pass params",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "priority": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "task_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "tasks": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string"
+                                                    },
+                                                    "priority": {
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "copmleted_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "parent_id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "depth": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Child task not done"
+                    }
+                }
+            }
+        }
+    }
+}
