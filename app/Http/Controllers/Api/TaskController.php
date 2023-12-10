@@ -190,7 +190,7 @@ class TaskController extends Controller
         return response()->json([
             'message' => 'Task created successfully',
             'task' => $task
-        ]);
+        ], Response::HTTP_CREATED);
     }
 
 

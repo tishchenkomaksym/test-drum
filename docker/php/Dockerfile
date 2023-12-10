@@ -42,8 +42,7 @@ RUN set -eux; \
     php -r 'var_dump(gd_info());'
 
 RUN docker-php-ext-install exif && docker-php-ext-enable exif
-#RUN apt update && apt install -y cron
-#RUN service cron start
-#RUN apt-get install -y supervisor
+
+RUN apt update && apt install sqlite3
 
 WORKDIR /var/www/html

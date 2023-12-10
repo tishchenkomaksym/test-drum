@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->fullText(['title', 'description']);
-        });
+        if (env('APP_ENV') != 'testing') {
+            Schema::table( 'tasks', function ( Blueprint $table )
+            {
+                $table->fullText( [ 'title', 'description' ] );
+            } );
+        }
     }
 
     /**
