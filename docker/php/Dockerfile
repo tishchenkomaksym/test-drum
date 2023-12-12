@@ -24,8 +24,6 @@ RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install calendar
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install sockets
-#RUN apt-get update && apt-get install zip unzip
-#RUN pecl install redis  && docker-php-ext-enable redis.so
 RUN pecl install igbinary && docker-php-ext-enable igbinary
 RUN docker-php-ext-install  opcache pdo pdo_mysql
 RUN pecl install xdebug && docker-php-ext-enable xdebug
@@ -42,7 +40,8 @@ RUN set -eux; \
     php -r 'var_dump(gd_info());'
 
 RUN docker-php-ext-install exif && docker-php-ext-enable exif
-
 RUN apt update && apt install sqlite3
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN apt-get update && apt-get install zip unzip
 
 WORKDIR /var/www/html
